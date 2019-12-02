@@ -1,4 +1,4 @@
-<!<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta name="Examen NextU" content="Examen No.1 javascript" charset="utf-8">
@@ -7,10 +7,10 @@
 
 <body>
   <h1>Administrador de Estudiantes</h1>
-  <button type="button" name="button" onclick="mostrarEstudiantes">Mostrar Alumnos</button>
-  <button type="button" name="button" onclick="promedio">Calcular Nota Promedio</button>
-  <button type="button" name="button" onclick="notaMayor">Nota Mayor</button>
-  <button type="button" name="button" onclick="notaMenor">Nota Menor</button>
+  <button type="button" name="button" onclick="leerJSON(alumnos)">Mostrar Alumnos</button>
+  <button type="button" name="button" onclick="calcularPromedio(alumnos)">Calcular Nota Promedio</button>
+  <button type="button" name="button" onclick="notaMayor(alumnos)">Nota Mayor</button>
+  <button type="button" name="button" onclick="notaMenor(alumnos)">Nota Menor</button>
 
   <p id="alumnos"></p>
 
@@ -19,47 +19,87 @@
 <script>
   var alumnos =[
     {
-        "Código ": "001",
-        "Nombre ": "Lisa",
-        "Nota ": "100"
+        "Codigo": "001",
+        "Nombre": "Lisa",
+        "Nota": 100
     },{
-        "Código ": "002",
-        "Nombre ": "Margaret",
-        "Nota ": "93"
+        "Codigo": "002",
+        "Nombre": "Margaret",
+        "Nota": 93
     },{
-        "Código ": "003",
-        "Nombre ": "Marge",
-        "Nota ": "95"
+        "Codigo": "003",
+        "Nombre": "Marge",
+        "Nota": 95
     },{
-        "Código ": "004",
-        "Nombre ": "Bartolomeo",
-        "Nota ": "50"
+        "Codigo": "004",
+        "Nombre": "Bartolomeo",
+        "Nota": 50
     },{
-        "Código ": "005",
-        "Nombre ": "Homero",
-        "Nota ": "40"
+        "Codigo": "005",
+        "Nombre": "Homero",
+        "Nota": 40
     },{
-        "Código ": "006",
-        "Nombre ": "Milhouse",
-        "Nota ": "70"
+        "Codigo": "006",
+        "Nombre": "Milhouse",
+        "Nota": 70
     },{
-        "Código ": "007",
-        "Nombre ": "Abraham",
-        "Nota ": "20"
+        "Codigo": "007",
+        "Nombre": "Abraham",
+        "Nota": 20
     },{
-        "Código ": "008",
-        "Nombre ": "Apu Nahasapeemapetilon",
-        "Nota ": "80"
+        "Codigo": "008",
+        "Nombre": "Apu Nahasapeemapetilon",
+        "Nota": 80
     },{
-        "Código ": "009",
-        "Nombre ": "Ralph",
-        "Nota ": "10"
+        "Codigo": "009",
+        "Nombre": "Ralph",
+        "Nota": 10
     },{
-        "Código ": "010",
-        "Nombre ": "Barney",
-        "Nota ": "17"
+        "Codigo": "010",
+        "Nombre": "Barney",
+        "Nota": 14
     }
   ];
+
+function leerJSON(json) {
+  var out = "-----------Alumnos--------------<br>";
+  for (var i = 0; i < json.length; i++) {
+    out += "Código: " + json[i].Codigo +"--"+ "Nombre: "+ json[i].Nombre +"--"+ "Nota: "+ json[i].Nota + "<br>";
+  }
+  document. getElementById("alumnos").innerHTML = out;
+}
+
+function calcularPromedio(json) {
+  var suma = 0;
+  for (var i = 0; i < json.length; i++) {
+    suma += json[i].Nota;
+  }
+  var promedio = suma/json.length;
+  alert("El promedio de nota es: "+ promedio);
+}
+
+function notaMayor(json) {
+  var indiceMayor = 0;
+  var notaMayor = json[indiceMayor].Nota;
+  for (var i = 1; i < json.length; i++) {
+   if (json[i].Nota > notaMayor) {
+     notaMayor = json[i].Nota;
+     indiceMayor = i;
+   }
+  }
+  alert("La nota mayor es: "+ notaMayor + "  Pertenece al estudiante: "+json[indiceMayor].Nombre);
+}
+function notaMenor(json) {
+  var indiceMenor = 0;
+  var notaMenor = json[indiceMenor].Nota;
+  for (var i = 1; i < json.length; i++) {
+   if (json[i].Nota < notaMenor) {
+     notaMenor = json[i].Nota;
+     indiceMenor = i;
+   }
+  }
+  alert("La nota mayor es: "+ notaMenor + "  Pertenece al estudiante: "+json[indiceMenor].Nombre);
+}
 
 
 </script>
